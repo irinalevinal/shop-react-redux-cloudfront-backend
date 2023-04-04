@@ -8,6 +8,12 @@ export default {
       http: {
         method: 'get',
         path: 'products',
+        responseData: {
+          200: {
+            description: 'Products List',
+            bodyType: 'ProductsList'
+          },
+        }
         // request: {
         //   schemas: {
         //     'application/json': schema,

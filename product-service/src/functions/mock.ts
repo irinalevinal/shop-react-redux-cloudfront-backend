@@ -1,9 +1,4 @@
-type Product = {
-  description: String,
-  id: String,
-  price: number,
-  title: String
-};
+import { Product } from '@libs/models/Product';
 
 export const products: Product[] = [
     {

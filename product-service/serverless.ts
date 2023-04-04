@@ -37,6 +37,11 @@ const serverlessConfiguration: AWS = {
       platform: 'node',
       concurrency: 10,
     },
+    autoswagger: {
+        typefiles: ['./src/libs/models/Product.ts'],
+        host: 'xuohj4pat5.execute-api.eu-central-1.amazonaws.com/dev',
+        //excludeStages: ['production', 'anyOtherStage'],
+    },
   },
 };
 

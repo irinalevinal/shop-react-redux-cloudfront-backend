@@ -8,18 +8,15 @@ export default {
       http: {
         method: 'get',
         path: 'products/{productId}',
-        // request: {
-        //   parameters: {
-        //     paths: {
-        //       productId: true,
-        //     }
-        //   }
-        // }
-        // request: {
-        //   schemas: {
-        //     'application/json': schema,
-        //   },
-        // },
+        responseData: {
+          200: {
+            description: 'Product is found',
+            bodyType: 'ProductInterface'
+          },
+          404: {
+            description: 'Product is not found'
+          }
+        },
       },
     },
   ],

@@ -20,7 +20,10 @@
         "parameters": [],
         "responses": {
           "200": {
-            "description": "200 response"
+            "description": "Products List",
+            "schema": {
+              "$ref": "#/definitions/ProductsList"
+            }
           }
         }
       }
@@ -46,12 +49,78 @@
         ],
         "responses": {
           "200": {
-            "description": "200 response"
+            "description": "Product is found",
+            "schema": {
+              "$ref": "#/definitions/ProductInterface"
+            }
+          },
+          "404": {
+            "description": "Product is not found"
           }
         }
       }
     }
   },
-  "definitions": {},
-  "securityDefinitions": {}
+  "definitions": {
+    "ProductInterface": {
+      "properties": {
+        "description": {
+          "$ref": "#/definitions/String",
+          "title": "ProductInterface.description"
+        },
+        "id": {
+          "$ref": "#/definitions/String",
+          "title": "ProductInterface.id"
+        },
+        "price": {
+          "title": "ProductInterface.price",
+          "type": "number"
+        },
+        "title": {
+          "$ref": "#/definitions/String",
+          "title": "ProductInterface.title"
+        }
+      },
+      "required": [
+        "description",
+        "id",
+        "price",
+        "title"
+      ],
+      "additionalProperties": false,
+      "title": "ProductInterface",
+      "type": "object"
+    },
+    "Product": {
+      "$ref": "#/definitions/ProductInterface",
+      "title": "Product"
+    },
+    "AvaliableProduct": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/ProductInterface"
+        },
+        {
+          "properties": {
+            "count": {
+              "title": "count",
+              "type": "number"
+            }
+          },
+          "additionalProperties": false,
+          "type": "object"
+        }
+      ],
+      "title": "AvaliableProduct"
+    },
+    "ProductsList": {
+      "items": {
+        "$ref": "#/definitions/AvaliableProduct"
+      },
+      "title": "ProductsList",
+      "type": "array"
+    }
+  },
+  "securityDefinitions": {},
+  "host": "xuohj4pat5.execute-api.eu-central-1.amazonaws.com/dev"
 };
