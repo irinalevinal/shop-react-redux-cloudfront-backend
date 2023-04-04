@@ -51,7 +51,7 @@
           "200": {
             "description": "Product is found",
             "schema": {
-              "$ref": "#/definitions/ProductInterface"
+              "$ref": "#/definitions/AvaliableProduct"
             }
           },
           "404": {

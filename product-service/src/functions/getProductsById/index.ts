@@ -11,7 +11,7 @@ export default {
         responseData: {
           200: {
             description: 'Product is found',
-            bodyType: 'ProductInterface'
+            bodyType: 'AvaliableProduct'
           },
           404: {
             description: 'Product is not found'
