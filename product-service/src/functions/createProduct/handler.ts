@@ -4,6 +4,7 @@ import { middyfy } from '@libs/lambda';
 import { ddbDocumentClient } from '@libs/ddbClient';
 import { v4 as uuidv4 } from 'uuid';
 import { AvaliableProduct } from '@libs/models/Product'
+import { isNumber, isString } from "lodash";
 
 
 import schema from './schema';
@@ -25,7 +26,7 @@ const createProductProcessing =  async (body:AvaliableProduct): Promise<any> | n
   if (!isBodyValid) {
     return {
       statusCode: 400,
-      body: "Parameters are missed",
+      body: "Incorrect data is provided",
     };
   } else {
       const id: string = uuidv4();
@@ -76,10 +77,12 @@ const createProductProcessing =  async (body:AvaliableProduct): Promise<any> | n
 }
 
 const createBodyValidator = (body:AvaliableProduct): boolean  => {
-  type TypeValidatorKeys = (keyof AvaliableProduct)[];
-  const requiredKeys: TypeValidatorKeys = ['title', 'description', 'price', 'count'];
-  const bodyKeys: TypeValidatorKeys = Object.keys(body) as TypeValidatorKeys;
-  return requiredKeys.every((key) => bodyKeys.includes(key))
+  const {price, title, description, count} = body;
+  const isPriceValid = price && isNumber(price);
+  const isTitleValid = title && isString(title);
+  const isDescriptionValid = description && isString(description);
+  const isCountValid = count && isNumber(count);
+  return isPriceValid && isTitleValid && isDescriptionValid && isCountValid;
 }
 
 export const main = middyfy(createProduct);
