@@ -1,0 +1,44 @@
+{
+    "headers": {
+        "Content-Type": "application/json"
+    },
+    "queryStringParameters": null,
+    "multiValueQueryStringParameters": null,
+    "pathParameters": {
+    "productId": "7567ec4b-b10c-48c5-9345-fc73348a80a1"
+    },
+    "stageVariables": null,
+    "requestContext": {
+    "resourceId": "46ovlt",
+    "resourcePath": "/products/{productId}",
+    "httpMethod": "GET",
+    "extendedRequestId": "Cz8cNGk-liAFtzw=",
+    "requestTime": "03/Apr/2023:17:33:27 +0000",
+    "path": "/dev/products/15",
+    "accountId": "125248424854",
+    "protocol": "HTTP/1.1",
+    "stage": "dev",
+    "domainPrefix": "xuohj4pat5",
+    "requestTimeEpoch": 1680543207454,
+    "requestId": "4ed00d95-020a-4df8-9f8d-a531dde8cae2",
+    "identity": {
+    "cognitoIdentityPoolId": null,
+    "accountId": null,
+    "cognitoIdentityId": null,
+    "caller": null,
+    "sourceIp": "85.250.237.23",
+    "principalOrgId": null,
+    "accessKey": null,
+    "cognitoAuthenticationType": null,
+    "cognitoAuthenticationProvider": null,
+    "userArn": null,
+    "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36",
+    "user": null
+    },
+    "domainName": "xuohj4pat5.execute-api.eu-central-1.amazonaws.com",
+    "apiId": "xuohj4pat5"
+    },
+    "body": null,
+    "isBase64Encoded": false
+    }
+    
