@@ -1,8 +1,8 @@
 export interface ProductInterface {
-    description: String,
-    id: String,
+    description: string,
+    id: string,
     price: number,
-    title: String
+    title: string
 };
 
 export type Product = ProductInterface;
