@@ -15,4 +15,3 @@ export const formatJSONResponse = (response, statusCode = 200) => {
   }
 }
 
-

@@ -1,30 +1,46 @@
 import type { ValidatedEventAPIGatewayProxyEvent } from '@libs/api-gateway';
 import { formatJSONResponse } from '@libs/api-gateway';
 import { middyfy } from '@libs/lambda';
-import { products } from '../mock';
+import { ddbDocumentClient } from '@libs/ddbClient';
+
 
 import schema from './schema';
 
 const getProductsById: ValidatedEventAPIGatewayProxyEvent<typeof schema> = async (event) => {
+  console.log('[getProductsById] request and arguments: ', event);
+  try {
+      const productTableParams = {
+        TableName: process.env.PRODUCTS_TABLE_NAME,
+        Key: {
+          "id": event.pathParameters.productId, 
+          }, 
+      };
 
-  const availableProducts = products.map(
-    (product, index) => ({ ...product, count: index + 1 })
-  );
-  await resolveAfter1Seconds(); //TODO: remove after DB is connected
-  
-  const product = availableProducts.find((p) => p.id == event.pathParameters.productId);
-  if (!product) {
-    return formatJSONResponse({error: {message: "Product is not found"}}, 404);
+      const stocksTableParams = {
+        TableName: process.env.STOCKS_TABLE_NAME,
+        Key: {
+          "product_id": event.pathParameters.productId, 
+         }, 
+      }
+
+      const product = await ddbDocumentClient.get(productTableParams).promise()
+      const stock = await ddbDocumentClient.get(stocksTableParams).promise()
+
+      const result = {
+        ...product.Item,
+        count: stock.Item?.count
+      }
+
+      if (!product.Item) {
+        return formatJSONResponse({error: {message: "Product is not found"}}, 404);
+      }
+
+      return formatJSONResponse({...result});
+  } catch (error) {
+      console.error(error);
+      return formatJSONResponse(error, 500);
   }
-  return formatJSONResponse({...product});
 };
 
-function resolveAfter1Seconds() { //TODO: remove after DB is connected
-  return new Promise(resolve => {
-    setTimeout(() => {
-      resolve('resolved');
-    }, 2000);
-  });
-}
 
 export const main = middyfy(getProductsById);

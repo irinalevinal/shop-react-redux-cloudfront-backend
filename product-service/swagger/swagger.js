@@ -26,6 +26,36 @@
             }
           }
         }
+      },
+      "post": {
+        "summary": "createProduct",
+        "description": "",
+        "operationId": "createProduct.post.products",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Body required in the request",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ProductInterface"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Product is created",
+            "schema": {
+              "$ref": "#/definitions/ProductInterface"
+            }
+          }
+        }
       }
     },
     "/products/{productId}": {
@@ -51,7 +81,7 @@
           "200": {
             "description": "Product is found",
             "schema": {
-              "$ref": "#/definitions/AvaliableProduct"
+              "$ref": "#/definitions/ProductInterface"
             }
           },
           "404": {
@@ -65,20 +95,20 @@
     "ProductInterface": {
       "properties": {
         "description": {
-          "$ref": "#/definitions/String",
-          "title": "ProductInterface.description"
+          "title": "ProductInterface.description",
+          "type": "string"
         },
         "id": {
-          "$ref": "#/definitions/String",
-          "title": "ProductInterface.id"
+          "title": "ProductInterface.id",
+          "type": "string"
         },
         "price": {
           "title": "ProductInterface.price",
           "type": "number"
         },
         "title": {
-          "$ref": "#/definitions/String",
-          "title": "ProductInterface.title"
+          "title": "ProductInterface.title",
+          "type": "string"
         }
       },
       "required": [

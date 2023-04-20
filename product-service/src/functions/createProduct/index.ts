@@ -6,16 +6,14 @@ export default {
   events: [
     {
       http: {
-        method: 'get',
-        path: 'products/{productId}',
+        method: 'post',
+        path: 'products',
+        bodyType: 'ProductInterface',
         responseData: {
           200: {
-            description: 'Product is found',
+            description: 'Product is created',
             bodyType: 'ProductInterface'
           },
-          404: {
-            description: 'Product is not found'
-          }
         },
       },
     },
