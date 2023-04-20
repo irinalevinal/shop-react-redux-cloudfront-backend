@@ -42,28 +42,6 @@ const serverlessConfiguration: AWS = {
       S3_REGION: "${self:provider.region}"
     },
   },
-
-
-    // "functions": {
-      
-    //   "importFileParser": {
-    //     "handler": "handlers/importFileParser.handler",
-    //     "events": [
-    //       {
-    //         "s3": {
-    //           "bucket": "${self:custom.PRODUCTS_BUCKET}",
-    //           "event": "s3:ObjectCreated:*",
-    //           "rules": [
-    //             {
-    //               "prefix": "${self:custom.FOLDER_TO_UPLOAD}/"
-    //             }
-    //           ],
-    //           "existing": true
-    //         }
-    //       }
-    //     ]
-    //   }
-    // },
   
   // import the function via paths
   functions: { importProductsFile, importFileParser },
