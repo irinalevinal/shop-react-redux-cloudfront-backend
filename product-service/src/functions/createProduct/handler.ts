@@ -21,7 +21,7 @@ const createProduct: ValidatedEventAPIGatewayProxyEvent<typeof schema> = async (
   }
 };
 
-const createProductProcessing =  async (body:AvaliableProduct): Promise<any> | never => {
+export const createProductProcessing =  async (body:AvaliableProduct): Promise<any> | never => {
   const isBodyValid: boolean = createBodyValidator(body);
   if (!isBodyValid) {
     return {
