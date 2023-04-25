@@ -53,8 +53,6 @@ const serverlessConfiguration: AWS = {
       NODE_OPTIONS: '--enable-source-maps --stack-trace-limit=1000',
       PRODUCTS_TABLE_NAME: 'products',
       STOCKS_TABLE_NAME: 'stocks',
-      SNS_SUB_EMAIL: 'irina_levina@epam.com',
-      SNS_FREE_PRODUCT_SUB_EMAIL: 'irina_levina@epam.com',
       SNS_CREATE_PRODUCT_TOPIC: 'createProductTopic',
       SNS_REGION: 'eu-central-1'
     },
