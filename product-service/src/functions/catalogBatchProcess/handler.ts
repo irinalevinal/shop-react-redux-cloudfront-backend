@@ -6,7 +6,7 @@ import { createProductProcessing } from '../createProduct/handler';
 
 const catalogBatchProcess = async (event: SQSEvent) => {
   try {
-    const sns = new SNS({ region: 'us-east-1' });
+    const sns = new SNS({ region: `${process.env.SNS_REGION}`});
     const records = event.Records.map(({ body }) => JSON.parse(body));
 
     const joined = await Promise.all(
@@ -21,6 +21,7 @@ const catalogBatchProcess = async (event: SQSEvent) => {
       console.log('***** Product processing *****', { product });
 
       await createProductProcessing({ ...product });
+      
       await sns.publish({
         Message: `New product ${product.title} was created`,
         Subject: 'AWS Product Creation',

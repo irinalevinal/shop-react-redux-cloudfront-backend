@@ -5,7 +5,7 @@ export default {
   events: [
     {
       sqs: {
-        arn: "arn:aws:sqs:eu-central-1:125248424854:catalogItemsQueue",
+        arn: "catalogItemsQueue",
         batchSize: 5,
       },
     }
