@@ -38,27 +38,7 @@ const getSignedUrl = async (key, bucket) => {
     return s3.getSignedUrl("putObject", params);
 }
 
-const getStreamObject = async (key: string, bucket: string) => {
-    const object = await getObject(key, bucket);
-    const readStream = object.createReadStream();
-
-    const streamChunks = [];
-
-    return await new Promise((resolve, reject) => {
-      readStream
-        .pipe(csv())
-        .on("data", function (data: any) {
-          streamChunks.push(data);
-        })
-        .on("end", function () {
-          resolve(streamChunks);
-        })
-        .on("error", function (error) {
-          console.error(error.message)
-          reject("error processing csv file");
-        });
-    });
-}
+const getStreamObject = async (key: string, bucket: string) => (await getObject(key, bucket)).createReadStream().pipe(csv());
 
 export default {
     copyObject,

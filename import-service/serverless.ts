@@ -19,6 +19,11 @@ const serverlessConfiguration: AWS = {
       role: {
         statements: [
           {
+            Effect: "Allow",
+            Action: "sqs:*",
+            Resource: "arn:aws:sqs:eu-central-1:125248424854:catalogItemsQueue"
+          },
+          {
             Effect: 'Allow',
             Action: [
               "s3:ListBucket"
@@ -39,7 +44,9 @@ const serverlessConfiguration: AWS = {
       S3_BUCKET_PRODUCTS: "shop-react-redux-cloudfront-cloudx-products",
       AWS_NODEJS_CONNECTION_REUSE_ENABLED: '1',
       NODE_OPTIONS: '--enable-source-maps --stack-trace-limit=1000',
-      S3_REGION: "${self:provider.region}"
+      S3_REGION: "${self:provider.region}",
+      SQS_PRODUCT_QUEUE: 'catalogItemsQueue',
+      SQS_REGION: "${self:provider.region}",
     },
   },
   
