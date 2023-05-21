@@ -15,5 +15,9 @@
   "bugs": {
     "url": "https://github.com/irinalevinal/shop-react-redux-cloudfront-be/issues"
   },
-  "homepage": "https://github.com/irinalevinal/shop-react-redux-cloudfront-be#readme"
+  "homepage": "https://github.com/irinalevinal/shop-react-redux-cloudfront-be#readme",
+  "dependencies": {
+    "@vendia/serverless-express": "^4.10.3",
+    "aws-lambda": "^1.0.7"
+  }
 }
