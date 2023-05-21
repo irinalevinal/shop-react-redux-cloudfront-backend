@@ -12,11 +12,13 @@
 # Happy Coding!
 
 service: cart-service
+useDotenv: true
 # app and org for use with dashboard.serverless.com
 #app: your-app-name
 #org: your-org-name
 
 plugins:
+  - serverless-dotenv-plugin
   - serverless-offline
 # You can pin your service to only deploy with a specific Serverless version
 # Check out our docs for more details
@@ -29,7 +31,12 @@ provider:
 # you can overwrite defaults here
 #  stage: dev
 #  region: us-east-1
-
+environment:
+  DATABASE_HOST: ${env:DATABASE_HOST}
+  DATABASE_NAME: ${env:DATABASE_NAME}
+  DATABASE_PORT: ${env:DATABASE_PORT}
+  DATABASE_USERNAME: ${env:DATABASE_USERNAME}
+  DATABASE_PASSWORD: ${env:DATABASE_PASSWORD}
 # you can add statements to the Lambda function's IAM Role here
 #  iam:
 #    role:
